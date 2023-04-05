@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  .headerTitles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .headerTitleSm {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      color: gray;
+      font-family: "Lora", serif;
+      font-style: italic;
+    }
+    .headerTitleLg {
+      position: absolute;
+      top: 3.5rem;
+      font-family: "Lora", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 5rem;
+      color: rgb(61, 61, 61);
+    }
+  }
+  img {
+    margin-top: 3rem;
+    width: 100%;
+    min-height: 80vh;
+    height: 80vh;
+    object-fit: cover;
+    border: none;
+  }
+}

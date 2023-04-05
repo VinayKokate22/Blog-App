@@ -1,0 +1,51 @@
+.singlePost {
+  flex: 8;
+  padding: 2rem;
+  .singlePostWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 30rem;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+    .singlePostTitle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      //   background-color: aqua;
+      width: 100%;
+      h1 {
+        margin-left: 35%;
+        font-size: 2.5rem;
+      }
+      .singlePostEdit {
+        display: flex;
+        gap: 1rem;
+        i {
+          font-size: 1.4rem;
+        }
+        .fa-edit {
+          color: blue;
+        }
+        .fa-trash-alt {
+          color: red;
+        }
+      }
+    }
+    .singlePostInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .author_and_timeInfo {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}

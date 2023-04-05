@@ -1,0 +1,64 @@
+.topbar {
+  height: 3rem;
+  background-color: rgb(255, 248, 239);
+  position: sticky;
+  z-index: 999999999;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+}
+.topbar .link {
+  color: gray;
+}
+.topbar .leftsection {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  color: rgb(59, 59, 59);
+}
+.topbar .leftsection i {
+  font-size: 1.4rem;
+}
+.topbar .rightsection {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+}
+.topbar .rightsection img {
+  width: 2rem;
+  height: 2rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 2rem;
+}
+.topbar .rightsection .topList {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+}
+.topbar .rightsection .topList li {
+  text-decoration: none;
+}
+.topbar .rightsection .topList li .link {
+  text-decoration: none;
+}
+.topbar .centersection {
+  flex: 6;
+  color: gray;
+}
+.topbar .centersection .topList {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+}
+.topbar .centersection .topList li {
+  text-decoration: none;
+}
+.topbar .centersection .topList li .link {
+  text-decoration: none;
+}/*# sourceMappingURL=topbar.css.map */

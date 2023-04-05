@@ -1,0 +1,44 @@
+.sidebar {
+  flex: 2;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  border-left: 1px solid black;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  .sidebarItem {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    .sidebarTitle {
+      font-size: 1rem;
+      font-weight: 700;
+      border-bottom: 1px solid black;
+      padding: 0.5rem 0;
+      border-top: 1px solid black;
+    }
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      .sidebarListItem {
+        width: 40%;
+        .link {
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+    img {
+      width: 100%;
+    }
+    .sidebarSocial {
+      font-size: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      color: rgb(78, 78, 78);
+    }
+  }
+}
