@@ -9,14 +9,13 @@ const Posts = ({ prop }) => {
       <div className="postInfo">
         <div className="postCats">
           <span className="postCat">
-            <Link className="link" to="/">
-              Music
-            </Link>
-          </span>
-          <span className="postCat">
-            <Link className="link" to="/">
-              Life
-            </Link>
+            {prop.categories.forEach((data) => {
+              return (
+                <Link className="link" to="/">
+                  {data}
+                </Link>
+              );
+            })}
           </span>
         </div>
         <span className="postTitle">
@@ -25,7 +24,9 @@ const Posts = ({ prop }) => {
           </Link>
         </span>
         <hr />
-        <span className="postDate">{prop.updatedAt}</span>
+        <span className="postDate">
+          {new Date(prop.createdAt).toDateString()}
+        </span>
       </div>
       <p className="postDesc">{prop.desc}</p>
     </div>

@@ -8,6 +8,7 @@ const Post = () => {
   const data = useSelector((state) => {
     return state.post;
   });
+
   console.log("this is the data", data);
   if (!data.action) {
     return (
@@ -18,7 +19,6 @@ const Post = () => {
   }
   return (
     <div className="posts">
-      {console.log(data.action.payload.dbpost)}
       {data.action.payload.dbpost.map((data, i) => {
         return <Posts key={i} prop={data} />;
       })}

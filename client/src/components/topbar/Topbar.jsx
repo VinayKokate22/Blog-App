@@ -1,8 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./topbar.css";
+import { useSelector } from "react-redux";
+
 const Topbar = () => {
-  const user = false;
+  const data = useSelector((state) => state.user);
+  let user;
+  data.success ? (user = true) : (user = false);
+  const logoutuser = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="topbar">
       <div className="leftsection">
@@ -25,7 +33,15 @@ const Topbar = () => {
               WRITE
             </Link>
           </li>
-          {user && <li className="topListItem">LOGOUT</li>}
+          {user && (
+            <li
+              className="topListItem"
+              onClick={logoutuser}
+              style={{ cursor: "pointer" }}
+            >
+              LOGOUT
+            </li>
+          )}
         </ul>
       </div>
       <div className="rightsection">

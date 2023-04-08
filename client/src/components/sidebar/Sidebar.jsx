@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../loading/Loading";
+import axios from "axios";
+import { addcategory } from "../../store/slices/categoryslice";
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getallcategory = async () => {
+      const cat = await axios.get("http://localhost:3030/api/v1/category/all");
+      dispatch(addcategory(cat.data));
+    };
+    getallcategory();
+  }, []);
+  const data = useSelector((state) => {
+    return state.category;
+  });
+  {
+    console.log("they are category", data);
+  }
+  if (!data.action) {
+    return (
+      <div className="sidebarloading">
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <div className="sidebar">
       <div className="sidebarItem">
@@ -18,36 +44,15 @@ const Sidebar = () => {
       <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>
         <ul className="sidebarList">
-          <li className="sidebarListItem">
-            <Link className="link" to="/">
-              Life
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/">
-              Music
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/">
-              Sport
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/">
-              Style
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/">
-              Tech
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/">
-              Cinema
-            </Link>
-          </li>
+          {data.action.payload.dbcat.map((cat, i) => {
+            return (
+              <li key={i} className="sidebarListItem">
+                <Link className="link" to={`/?cat=${cat.name}`}>
+                  {cat.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="sidebarItem">

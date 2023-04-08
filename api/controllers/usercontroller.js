@@ -57,28 +57,31 @@ const loginUser = asyncHandler(async (req, res) => {
   });
 });
 const updateUser = asyncHandler(async (req, res) => {
-  const { username, email, profile } = req.body;
-  if (!username || !email) {
-    res.status(400);
-    throw new Error("Please enter the username");
-  }
+  try {
+    const { email } = req.body;
+    if (!email) {
+      res.status(400);
+      throw new Error("Please enter the email");
+    }
 
-  const userid = await req.user.userid;
-  const newData = {
-    username: username,
-    email: email,
-    profile: profile,
-  };
-  const dbuser = await User.findByIdAndUpdate(userid, newData, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
-  res.status(200).json({
-    success: true,
-    message: "The data has been updated",
-    dbuser,
-  });
+    const userid = await req.user.userid;
+    const newData = {
+      email: email,
+    };
+    const dbuser = await User.findByIdAndUpdate(userid, newData, {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
+    });
+    res.status(200).json({
+      success: true,
+      message: "The data has been updated",
+      dbuser,
+    });
+  } catch (error) {
+    res.status(400);
+    throw new Error(error);
+  }
 });
 const deleteUser = asyncHandler(async (req, res) => {
   const userid = await req.user.userid;

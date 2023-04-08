@@ -1,6 +1,6 @@
 .topbar {
-  height: 3rem;
-  background-color: rgb(255, 248, 239);
+  height: 4rem;
+  background-color: rgba(210, 209, 209, 0.788);
   position: sticky;
   z-index: 999999999;
   top: 0;
@@ -9,9 +9,12 @@
   align-items: center;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 600;
+  -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
 }
+.topbar li,
 .topbar .link {
-  color: gray;
+  color: rgb(0, 0, 0);
 }
 .topbar .leftsection {
   flex: 3;
@@ -61,4 +64,12 @@
 }
 .topbar .centersection .topList li .link {
   text-decoration: none;
+}
+
+.topbar:not(:sticky) {
+  box-shadow: none;
+}
+
+.topbar:sticky {
+  box-shadow: 0 0 20px black;
 }/*# sourceMappingURL=topbar.css.map */

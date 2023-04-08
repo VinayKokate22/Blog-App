@@ -3,15 +3,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  max-width: 30rem;
-  gap: 1rem;
+  justify-content: start;
+  width: 30rem;
+  height: 26rem;
+  gap: 0.5rem;
+  background-color: rgba(215, 211, 208, 0.192);
+  border-radius: 1rem;
+  -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
 }
 .post img {
   width: 100%;
-  height: 18rem;
-  width: 30rem;
   border-radius: 8px;
+  min-height: 18rem;
+  height: 18rem;
+  max-height: 18rem;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .post .postInfo {
   display: flex;
@@ -37,4 +45,4 @@
 .post .postInfo .postDate {
   font-family: "Lora", serif;
   font-style: italic;
-} /*# sourceMappingURL=posts.css.map */
+}/*# sourceMappingURL=posts.css.map */

@@ -5,9 +5,12 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Single from "./pages/single/Single";
 import Setting from "./pages/settingpage/Setting";
+import { useSelector } from "react-redux";
 
 function App() {
-  const user = false;
+  const data = useSelector((state) => state.user);
+  let user;
+  data.success ? (user = true) : (user = false);
   return (
     <Routes>
       <Route path="/" element={<Home />} />

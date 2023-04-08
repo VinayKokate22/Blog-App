@@ -1,3 +1,7 @@
+.postsloading {
+  flex: 8;
+}
+
 .posts {
   margin-top: 2rem;
   display: flex;
@@ -5,7 +9,4 @@
   justify-content: center;
   flex: 8;
   flex-wrap: wrap;
-} /*# sourceMappingURL=post.css.map */
-.postsloading {
-  flex: 8;
-}
+}/*# sourceMappingURL=post.css.map */

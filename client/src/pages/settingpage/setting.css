@@ -6,6 +6,9 @@
   flex: 8;
   padding: 20px;
 }
+.settingloader {
+  flex: 8;
+}
 
 .settingsTitle {
   display: flex;
@@ -14,14 +17,15 @@
 }
 
 .settingsTitleUpdate {
-  font-size: 30px;
+  font-size: 2rem;
   margin-bottom: 20px;
-  color: lightcoral;
+  color: rgb(0, 0, 0);
+  text-transform: capitalize;
 }
 
 .settingsTitleDelete {
   color: red;
-  font-size: 12px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -73,12 +77,14 @@
 }
 
 .settingsForm > input {
-  color: gray;
+  color: rgb(0, 0, 0);
   margin-top: 10px;
   margin-bottom: 10px;
   height: 30px;
   border: none;
   border-bottom: 1px solid lightgray;
+  padding-left: 1rem;
+  font-size: 1rem;
 }
 
 .settingsSubmitButton {

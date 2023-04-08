@@ -3,7 +3,7 @@ const Post = require("../models/Post");
 const User = require("../models/User");
 
 const postBlog = asyncHandler(async (req, res) => {
-  const { title, desc, photo } = req.body;
+  const { title, desc, photo, category } = req.body;
   const userid = req.user.userid;
   const user = await User.findById(userid);
   const username = user.username;
@@ -25,6 +25,7 @@ const postBlog = asyncHandler(async (req, res) => {
     title,
     desc,
     photo,
+    category,
     username,
   });
   res.status(200).json({
@@ -33,7 +34,7 @@ const postBlog = asyncHandler(async (req, res) => {
   });
 });
 const updateBlog = asyncHandler(async (req, res) => {
-  const { title, desc, photo, category } = req.body;
+  const { title, desc, photo, categories } = req.body;
   if (!title || !desc || !photo) {
     res.status(400);
     throw new Error("Please enter the title description and photo");
@@ -43,6 +44,7 @@ const updateBlog = asyncHandler(async (req, res) => {
     title: title,
     desc: desc,
     photo: photo,
+    categories,
   };
   const user = await User.findById(req.user.userid);
   const username = user.username;
