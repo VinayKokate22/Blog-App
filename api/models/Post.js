@@ -20,7 +20,7 @@ const PostSchema = new mongoose.Schema(
       required: [true, "plese enter the username"],
     },
     categories: {
-      type: Array,
+      type: String,
       required: false,
     },
   },

@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 const Setting = () => {
   const [User, setUser] = useState();
+  const [file, setfile] = useState();
+  const PF = "http://localhost:3030/images/";
   useEffect(() => {
     const getuserdata = async () => {
       const userdata = await axios.get(
@@ -30,11 +32,22 @@ const Setting = () => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
+    const newPost = {
+      email,
+    };
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      newPost.profilePic = filename;
+      try {
+        await axios.post("http://localhost:3030/api/v1/upload", data);
+      } catch (err) {}
+    }
     const res = await axios.put(
       "http://localhost:3030/api/v1/user/update",
-      {
-        email,
-      },
+      newPost,
       {
         headers: {
           authorization: "Bearer " + userinfo.accesstoken,
@@ -85,7 +98,11 @@ const Setting = () => {
               <label>Profile Picture</label>
               <div className="settingsPP">
                 <img
-                  src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                  src={
+                    file
+                      ? URL.createObjectURL(file)
+                      : PF + User.dbuser.profilePic
+                  }
                   alt=""
                 />
                 <label htmlFor="fileInput">
@@ -96,6 +113,7 @@ const Setting = () => {
                   type="file"
                   style={{ display: "none" }}
                   className="settingsPPInput"
+                  onChange={(e) => setfile(e.target.files[0])}
                 />
               </div>
 

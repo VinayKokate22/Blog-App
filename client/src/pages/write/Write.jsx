@@ -10,17 +10,31 @@ const Write = () => {
 
   const [title, setTitle] = useState();
   const [desc, setdesc] = useState();
+  const [file, setfile] = useState();
+  const [categories, setcat] = useState();
+  console.log("the categories is ", categories);
   const handlesubmit = async (e) => {
     e.preventDefault();
+    const newPost = {
+      title,
+      desc,
+      categories,
+    };
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      newPost.photo = filename;
+      try {
+        await axios.post("http://localhost:3030/api/v1/upload", data);
+      } catch (err) {}
+    }
     try {
       const res = await axios.post(
         "http://localhost:3030/api/v1/posts/create",
-        {
-          title,
-          desc,
-          photo:
-            "https://img.freepik.com/free-vector/3d-grid-wormhole-illusion-design-element-vector_53876-166832.jpg?w=360&t=st=1680843818~exp=1680844418~hmac=b798dde36f370bcc9420f3bce1e6c609909a0b534503638dbcb2be2085b6e936",
-        },
+        newPost,
+
         {
           headers: {
             authorization: "Bearer " + userinfo.accesstoken,
@@ -35,17 +49,20 @@ const Write = () => {
     <>
       <Topbar />
       <div className="write">
-        <img
-          className="writeImg"
-          src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-          alt=""
-        />
+        {file && (
+          <img className="writeImg" src={URL.createObjectURL(file)} alt="" />
+        )}
         <form className="writeForm" onSubmit={handlesubmit}>
           <div className="writeFormGroup">
             <label htmlFor="fileInput">
               <i className="writeIcon fas fa-plus"></i>
             </label>
-            <input id="fileInput" type="file" style={{ display: "none" }} />
+            <input
+              type="file"
+              id="fileInput"
+              style={{ display: "none" }}
+              onChange={(e) => setfile(e.target.files[0])}
+            />
             <input
               className="writeInput"
               placeholder="Title"
@@ -64,6 +81,69 @@ const Write = () => {
               autoFocus={true}
               onChange={(e) => setdesc(e.target.value)}
             />
+          </div>
+          <legend>Category</legend>
+          <div className="categorylist">
+            <label>
+              <input
+                id="indoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="music"
+                onClick={(e) => setcat(e.target.value)}
+              />
+              Music
+            </label>
+            <label>
+              <input
+                id="outdoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="life"
+                onClick={(e) => setcat(e.target.value)}
+              />
+              Life
+            </label>
+            <label>
+              <input
+                id="outdoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="sports"
+                onClick={(e) => setcat(e.target.value)}
+              />
+              Sports
+            </label>
+            <label>
+              <input
+                id="outdoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="style"
+                onClick={(e) => setcat(e.target.value)}
+              />
+              Style
+            </label>
+            <label>
+              <input
+                id="outdoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="Tech"
+                onClick={(e) => setcat(e.target.value)}
+              />
+              Tech
+            </label>
+            <label>
+              <input
+                id="outdoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="cinema"
+                onClick={(e) => setcat(e.target.value)}
+              />
+              Cinema
+            </label>
           </div>
           <button className="writeSubmit" type="submit">
             Publish

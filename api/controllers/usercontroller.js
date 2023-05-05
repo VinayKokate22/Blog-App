@@ -58,15 +58,18 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 const updateUser = asyncHandler(async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, profilePic } = req.body;
     if (!email) {
       res.status(400);
       throw new Error("Please enter the email");
     }
-
+    if (!profilePic) {
+      profilePic = "";
+    }
     const userid = await req.user.userid;
     const newData = {
       email: email,
+      profilePic,
     };
     const dbuser = await User.findByIdAndUpdate(userid, newData, {
       new: true,

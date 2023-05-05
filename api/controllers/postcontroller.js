@@ -3,7 +3,7 @@ const Post = require("../models/Post");
 const User = require("../models/User");
 
 const postBlog = asyncHandler(async (req, res) => {
-  const { title, desc, photo, category } = req.body;
+  const { title, desc, photo, categories } = req.body;
   const userid = req.user.userid;
   const user = await User.findById(userid);
   const username = user.username;
@@ -25,7 +25,7 @@ const postBlog = asyncHandler(async (req, res) => {
     title,
     desc,
     photo,
-    category,
+    categories,
     username,
   });
   res.status(200).json({
@@ -108,9 +108,7 @@ const getManyPost = asyncHandler(async (req, res) => {
     dbpost = await Post.find({ username });
   } else if (catName) {
     dbpost = await Post.find({
-      categories: {
-        $in: [catName],
-      },
+      categories: catName,
     });
   } else {
     dbpost = await Post.find();

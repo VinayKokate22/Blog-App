@@ -14,7 +14,7 @@ const SinglePost = () => {
   const userinfo = useSelector((state) => state.user);
   const url = window.location.href;
   const id = url.substring(url.lastIndexOf("/") + 1);
-
+  const PF = "http://localhost:3030/images/";
   const handledelete = async () => {
     try {
       const res = await axios.delete(
@@ -82,7 +82,11 @@ const SinglePost = () => {
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        <img className="singlePostImg" src={data.action.payload.photo} alt="" />
+        <img
+          className="singlePostImg"
+          src={PF + data.action.payload.photo}
+          alt=""
+        />
         <div className="singlePostTitle">
           {edit ? (
             <input

@@ -27,6 +27,10 @@
   background-color: rgb(219, 219, 219);
   padding: 0.5rem;
   border-radius: 1rem;
+  cursor: pointer;
+}
+.write .writeForm .writeFormGroup i:hover {
+  background-color: rgb(175, 243, 98);
 }
 .write .writeForm input,
 .write .writeForm textarea {
@@ -34,6 +38,8 @@
   width: 100%;
   font-size: 1rem;
   border: none;
+  border: 1px solid rgba(0, 0, 0, 0.107);
+  border-radius: 1rem;
 }
 .write .writeForm input {
   font-size: 2rem;
@@ -43,7 +49,25 @@
   width: fit-content;
   padding: 0.5rem 1rem;
   border: none;
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(224, 224, 224);
   font-size: 1rem;
   border-radius: 0.5rem;
+  cursor: pointer;
+}
+.write .writeForm button:hover {
+  background-color: rgb(174, 255, 98);
+}
+
+.categorylist {
+  display: flex;
+  background-color: rgb(224, 224, 224);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.categorylist label {
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 }/*# sourceMappingURL=write.css.map */

@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./topbar.css";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Topbar = () => {
+  const [User, setUser] = useState();
   const data = useSelector((state) => state.user);
   let user;
   data.success ? (user = true) : (user = false);
   const logoutuser = () => {
     window.location.reload();
   };
-
+  const PF = "http://localhost:3030/images/";
+  useEffect(() => {
+    const getuserdata = async () => {
+      const userdata = await axios.get(
+        "http://localhost:3030/api/v1/user/profile",
+        {
+          headers: {
+            authorization: "Bearer " + data.accesstoken,
+          },
+        }
+      );
+      setUser(userdata.data);
+    };
+    getuserdata();
+  }, []);
+  console.log(User, "this is the user data");
   return (
     <div className="topbar">
       <div className="leftsection">
@@ -49,7 +66,7 @@ const Topbar = () => {
           <Link className="link" to="/setting">
             <img
               className="topImg"
-              src="https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={User && PF + User.dbuser.profilePic}
               alt=""
             />
           </Link>
