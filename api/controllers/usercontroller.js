@@ -42,7 +42,7 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Incorrect Username or Password");
   }
-  const accesstoken = jwt.sign(
+  const token = jwt.sign(
     {
       userid: dbuser.id,
       username: dbuser.username,
